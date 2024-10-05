@@ -1,30 +1,41 @@
 # Data Cleaning -----------------------------------------------------------
 
+# Read txt file to data frame
 babies <- read.table("babies.txt", header = TRUE, sep="")
+
+# Variable descriptions
+bwt_description <- "numerical; birthweight, in ounces"
+gestation_description <- "numerical; length of gestation, in days"
+parity_description <- "categorical; binary indicator for a first pregnancy (0 = first pregnancy)"
+age_description <- "numerical; mother’s age in years"
+height_description <- "numerical; mother’s height in inches"
+weight_description <- "numerical; mother’s weight in pounds"
+smoke_description <- "categorical; binary indicator for whether the mother smokes (0 = no)"
+
 
 # Initial histograms prior to cleaning
 hist(babies$bwt, 
-     main = "bwt_description", 
+     main = "Birth Weight", 
      xlab = "birth weight (oz)")
 hist(babies$gestation, 
-     main = "gestation_description", 
+     main = "Gestation", 
      xlab = "length of gestation (days)")
 hist(babies$parity, 
      breaks = 2, 
-     main = "parity_description", 
-     xlab = "first pregnancy indicator")
+     main = "First Pregnancy Indicator", 
+     xlab = "parity")
 hist(babies$age, 
-     main = "age_description", 
-     xlab = "mother's age (yrs)")
+     main = "Mother's Age", 
+     xlab = "age (yrs)")
 hist(babies$height, 
-     main = "height_description", 
-     xlab = "mother's height (in)")
+     main = "Mother's Height", 
+     xlab = "height (in)")
 hist(babies$weight, 
-     main = "weight_description", 
-     xlab = "mother's weight (lbs)")
+     main = "Mother's Weight", 
+     xlab = "weight (lbs)")
 hist(babies$smoke, 
-     main = "smoke_description", 
-     xlab = "whether the mother smokes")
+     main = "Whether the Mother Smokes", 
+     xlab = "parity")
 
 # Removing n/a values, outliers
 cleaned_df <- subset(subset(babies, parity <= 1), smoke <= 1)
@@ -35,28 +46,28 @@ cleaned_df <- subset(cleaned_df, age <= 60)
 
 # Histograms after cleaning
 hist(cleaned_df$bwt, 
-     main = "bwt_description v2.", 
+     main = "Birth Weight v2.", 
      xlab = "birth weight (oz)")
 hist(cleaned_df$gestation, 
-     main = "gestation_description v2.", 
+     main = "Gestation v2.", 
      xlab = "length of gestation (days)")
 hist(cleaned_df$parity, 
      breaks = 2, 
-     main = "parity_description v2.", 
-     xlab = "first pregnancy indicator")
+     main = "First Pregnancy Indicator v2.", 
+     xlab = "parity")
 hist(cleaned_df$age, 
-     main = "age_description v2.", 
+     main = "Mother's Age v2.", 
      xlab = "mother's age (yrs)")
 hist(cleaned_df$height, 
-     main = "height_description v2.", 
+     main = "Mother's Height v2.", 
      xlab = "mother's height (in)")
 hist(cleaned_df$weight, 
-     main = "weight_description v2.", 
+     main = "Mother's Weight v2.", 
      xlab = "mother's weight (lbs)")
 hist(cleaned_df$smoke, 
      breaks = 2, 
-     main = "smoke_description v2.", 
-     xlab = "whether the mother smokes")
+     main = "Whether the Mother Smokes v2.", 
+     xlab = "parity")
 
 
 # Numerical Summaries -----------------------------------------------------
@@ -105,11 +116,13 @@ nonsmoker_std_bwt <- sd(nonsmoker_df$bwt) # 17.3987 oz
 hist(smoker_df$bwt,
      main = "Women who smoked",
      xlab = "birth weight (oz)",
-     ylim = c(0,150))
+     ylim = c(0,150),
+     col=rgb(0,0,1,1/4))
 hist(nonsmoker_df$bwt,
      main = "Women who did not smoke",
      xlab = "birth weight (oz)",
-     ylim = c(0,200))
+     ylim = c(0,200),
+     col=rgb(1,0,0,1/4))
 
 # Layered Histograms with Density
 p1 <- hist(smoker_df$bwt, freq = F)
