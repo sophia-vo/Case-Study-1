@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+babies <- read.table("babies.txt", header = TRUE, sep="")
 ```
 
 1. Introduction
@@ -30,6 +31,32 @@ The first step of our analysis was to examine the dataset and understand the cha
 
 
 2.1.2 Analysis
+
+```{r, echo=FALSE}
+hist(babies$bwt, 
+     main = "Birth Weight", 
+     xlab = "birth weight (oz)")
+hist(babies$gestation, 
+     main = "Gestation", 
+     xlab = "length of gestation (days)")
+hist(babies$parity, 
+     breaks = 2, 
+     main = "First Pregnancy Indicator", 
+     xlab = "parity")
+hist(babies$age, 
+     main = "Mother's Age", 
+     xlab = "age (yrs)")
+hist(babies$height, 
+     main = "Mother's Height", 
+     xlab = "height (in)")
+hist(babies$weight, 
+     main = "Mother's Weight", 
+     xlab = "weight (lbs)")
+hist(babies$smoke,
+     breaks= 2,
+     main = "Whether the Mother Smokes", 
+     xlab = "parity")
+```
 
 While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women had listed gestation periods of up to 1000 days while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
 
@@ -93,9 +120,15 @@ Now that we've summarized the two distributions numerically, we also want to loo
 
 
 
-### 2.4 Incidence of Low Birth Weights
+2.4 Incidence of Low Birth Weights
 
-## 3. Discussion
+2.4.1 Methods
+
+2.4.2 Analysis
+
+2.4.3 Conclusion
+
+3. Discussion
 
 
 
