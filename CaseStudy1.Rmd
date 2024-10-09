@@ -26,7 +26,7 @@ The report is structured as follows: Section 2 covers the statistical analysis p
 
 2.1.1 Methods
 
-The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To do this, we looked at the distributions of each variable using a histogram.
+The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To do this, we looked at the distributions of each variable graphically using a histogram.
 
 
 2.1.2 Analysis
@@ -37,7 +37,19 @@ While looking at the histograms, we noticed that some of the data in the dataset
 
 We concluded that the dataset does not qualify as a simple random sample because of the method in which it was collected. In order to qualify as a simple random sample, every pregnant women would need to have had an equal chance of being selected. However, in this dataset the pregnant women selected were limited to a certain time frame (1960-1967) and were limited to a specific health plan in a single region. Therefore, this dataset does not qualify as a simple random sample. This means that the dataset is not representative of the entire population and the results of the analysis cannot be generalized.
 
-### 2.2 Birth Weight Distributions
+2.2 Birth Weight Distributions
+
+2.2.1 Methods
+
+Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values.  
+
+2.2.2 Analysis
+
+
+
+2.2.3 Conclusion
+
+We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shape of the two distributions are almost symmetrical.
 
 ### 2.3 Graphical Analysis
 
