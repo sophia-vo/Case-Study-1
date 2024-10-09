@@ -31,7 +31,7 @@ The first step of our analysis was to examine the dataset and understand the cha
 
 2.1.2 Analysis
 
-While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women were listed at over 90 years old while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
+While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women had listed gestation periods of up to 1000 days while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
 
 2.1.3 Conclusion
 
