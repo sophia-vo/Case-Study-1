@@ -149,7 +149,7 @@ Now that we've summarized the two distributions numerically, we also want to loo
 
 2.3.2. Analysis
 
-We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison
+We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison.
 
 ```{r, echo=FALSE, include=FALSE}
 smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
@@ -182,7 +182,7 @@ legend(150, 0.025,
 
 2.3.3. Conclusion
 
-
+Based on the layering of the two distributions, the distribution of the baby weights of the mothers who are smokers is shifted to the left of the the distribution of the baby weights of the mothers who are non-smokers. This shows that overall, the baby weights of mothers who are smokers is less than the baby weights of mothers who are non-smokers. To determine whether or not this amount is significant, further analysis would need to be done.
 
 2.4. Incidence of Low Birth Weights
 

@@ -33,7 +33,8 @@ hist(babies$height,
 hist(babies$weight, 
      main = "Mother's Weight", 
      xlab = "weight (lbs)")
-hist(babies$smoke, 
+hist(babies$smoke,
+     breaks= 2,
      main = "Whether the Mother Smokes", 
      xlab = "parity")
 
@@ -72,19 +73,19 @@ hist(cleaned_df$smoke,
 
 # Numerical Summaries -----------------------------------------------------
 
-smoker_df <- babies[babies$smoke == 1,]
-nonsmoker_df <- babies[babies$smoke == 0,]
+smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
+nonsmoker_df <- cleaned_df[cleaned_df$smoke == 0,]
 
 # Minimum and maximum
-smoker_min_bwt <- min(smoker_df$bwt) # 58L oz
+smoker_min_bwt <- min(smoker_df$bwt) # 58 oz
 smoker_max_bwt <- max(smoker_df$bwt) # 163 oz
 
 nonsmoker_min_bwt <- min(nonsmoker_df$bwt) # 55 oz
 nonsmoker_max_bwt <- max(nonsmoker_df$bwt) # 176 oz
 
 # Mean
-smoker_mean_bwt <- mean(smoker_df$bwt) # 114.1095 oz
-nonsmoker_mean_bwt <- mean(nonsmoker_df$bwt) # 123.0472 oz
+smoker_mean_bwt <- mean(smoker_df$bwt) # 113.8192 oz
+nonsmoker_mean_bwt <- mean(nonsmoker_df$bwt) # 123.0853 oz
 
 # Median
 smoker_median_bwt <- median(smoker_df$bwt) #115 oz
@@ -97,7 +98,7 @@ nonsmoker_quartiles <- quantile(nonsmoker_df$bwt, probs = c(0.25,0.5,0.75))
 names(smoker_quartiles) <- NULL
 names(nonsmoker_quartiles) <- NULL
 
-smoker_q1_bwt <- smoker_quartiles[1] # 102 oz
+smoker_q1_bwt <- smoker_quartiles[1] # 101 oz
 smoker_q2_bwt <- smoker_quartiles[2] # 115 oz
 smoker_q3_bwt <- smoker_quartiles[3] # 126 oz
 
@@ -125,22 +126,22 @@ hist(nonsmoker_df$bwt,
      col=rgb(1,0,0,1/4))
 
 # Layered Histograms with Density
-p1 <- hist(smoker_df$bwt, freq = F)
-p2 <- hist(nonsmoker_df$bwt, freq = F)
+p1 <- hist(smoker_df$bwt, freq = FALSE)
+p2 <- hist(nonsmoker_df$bwt, freq = FALSE)
 
 plot( p1, 
       col=rgb(0,0,1,1/4),
       main = "Birth Weights",
       xlim = c(50,190),
-      freq = F,
+      freq = FALSE,
       ylim = c(0,0.026),
       xlab = "birth weight (oz)")
 
 plot( p2, 
       col=rgb(1,0,0,1/4),  
       xlim = c(50,190),
-      freq = F,
-      add = T)
+      freq = FALSE,
+      add = TRUE)
 
 legend(150, 0.025, 
        c("smokers", "nonsmokers"), 
@@ -158,7 +159,7 @@ plot( p1,
 plot( p2, 
       col=rgb(1,0,0,1/4),  
       xlim = c(50,190),
-      add = T)
+      add = TRUE)
 
 legend(150, 190, 
        c("smokers", "nonsmokers"), 
