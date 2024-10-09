@@ -26,11 +26,12 @@ The report is structured as follows: Section 2 covers the statistical analysis p
 
 2.1.1 Methods
 
-The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. 
+The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To do this, we looked at the distributions of each variable using a histogram.
+
 
 2.1.2 Analysis
 
-
+While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women were listed at over 90 years old while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
 
 2.1.3 Conclusion
 
