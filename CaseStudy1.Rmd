@@ -14,7 +14,7 @@ babies <- read.table("babies.txt", header = TRUE, sep="")
 
 This report aims to present the results of a statistical analysis done on the differences in weight between babies born to mothers who smoked during pregnancy and those who did not. 
 
-Our analysis aims to answer the question:  Is there a significant difference in birth weight between babies born to women who smoked and those who did not? Using both graphical and numerical approaches to answering this question, we found that [our results].
+Our analysis aims to answer the question:  Is there a significant difference in birth weight between babies born to women who smoked and those who did not? Using numerical, graphical, and incidence comparison approaches to answering this question, we found that [our results].
 
 The dataset used for this analysis contains information from 1236 babies; all male, single births, and lived up to 28 days. Variables in the dataset include birth weight, length of gestation, whether or not this was the mother's first pregnancy, mother's age, mother's height, mother's weight, and whether or not the mother was a smoker. 
 
@@ -112,28 +112,21 @@ hist(cleaned_df$smoke,
 
 >>We found that the numerical summaries were as follows:
 
->>Minimum birth weight among smokers: 58 oz
->>Minimum birth weight among non-smokers: 55 oz
+```{r, echo=FALSE}
+library(knitr)
+library(kableExtra)
 
->>Maximum birth weight among smokers: 163 oz
->>Maximum birth weight among non-smokers: 176 oz
+numerical_summaries <- data.frame(
+  Smokers = c(58, 163, 113.8192, 115, 18.0989, 101, 126),
+  Non_Smokers = c(55, 176, 123.0853, 123, 17.3987, 113, 134)
+)
+rownames(numerical_summaries) <- c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "Q1", "Q3")
 
->>Mean birth weight among smokers: 113.8192 oz
->>Mean birth weight among non-smokers: 123.0853 oz
+kable(numerical_summaries, caption = "Numerical Differences in Distributions of Smoking and Non-Smoking Mothers") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), full_width = FALSE)
+```
 
->>Median birth weight among smokers: 115 oz
->>Median birth weight among non-smokers: 123 oz
-
->>Standard deviation among smokers: 18.0989 oz
->>Standard deviation among non-smokers: 17.3987 oz
-
->>Q1 birth weight among smokers: 101 oz
->>Q1 birth weight among non-smokers: 113 oz
-
->>Q3 birth weight among smokers: 126 oz
->>Q3 birth weight among non-smokers: 134 oz
-
->>Most of these numerical summaries show that the birth weights of babies of mothers who are non-smokers are larger than the birth weights of babies of mothers who are smokers.
+>>Most of these numerical summaries show that the birth weights of babies of mothers who are non-smokers are larger than the birth weights of babies of mothers who are smokers. To determine whether or not those differences are significant would require further analysis.
 
 
 >>2.2.3. Conclusion
@@ -188,7 +181,59 @@ legend(150, 0.025,
 
 >>2.4.1. Methods
 
+>>Now that we've done both numerical and graphical analysis, we want to use one final comparison approach: incidence comparison. Using 100 ounces as the threshold of a low-weight baby, we found the percentages of babies that weigh under that threshold for both smoking and non-smoking mothers. We then adjusted the threshold to observe any changes in the incidences of low-weight births.
+
 >>2.4.2. Analysis
+
+>>We found that the percentages of low-weight babies are as follows:
+
+>>Percentage of low-weight babies in smoking mothers: 64.70588%
+
+>>Percentage of low-weight babies in non-smoking mothers: 35.29412%
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+low_weight_babies_df <- cleaned_df[cleaned_df$bwt < 100,]
+
+# Proportions for low birth weight babies
+low_bwt_nonsmoker <- dim(low_weight_babies_df[
+  low_weight_babies_df$smoke == 0,])[1] / dim(low_weight_babies_df)[1] # 35.2941 %
+low_bwt_smoker <- dim(low_weight_babies_df[
+  low_weight_babies_df$smoke == 1,])[1] / dim(low_weight_babies_df)[1] # 64.7059 %
+results_df <- data.frame(threshold = integer(), 
+                         low_bwt_nonsmoker = numeric(), 
+                         low_bwt_smoker = numeric())
+
+# Changes in proportions of birth weight
+for (threshold in 55:176) {
+  low_weight_df <- cleaned_df[cleaned_df$bwt < threshold, ]
+  
+    if (dim(low_weight_babies_df)[1] > 0) {
+    nonsmoker <- dim(low_weight_df[
+      low_weight_df$smoke == 0, ])[1] / dim(low_weight_df)[1]
+    smoker <- dim(low_weight_df[
+      low_weight_df$smoke == 1, ])[1] / dim(low_weight_df)[1]
+  }
+  
+  results_df <- rbind(results_df, data.frame(threshold = threshold,
+                                             low_bwt_nonsmoker = nonsmoker,
+                                             low_bwt_smoker = smoker))
+  results_df[, 2:3] <- lapply(results_df[, 2:3], function(x) round(x, 4))
+}
+
+plot(results_df$threshold, results_df$low_bwt_nonsmoker, type = "l", 
+     col = "red", lwd = 2, 
+     xlab = "Threshold (grams)", 
+     ylab = "Proportion of Low Birth Weight Babies", 
+     main = "Low Birth Weight Babies by Smoking Status",
+     xlim = c(55,176),
+     ylim = c(0,1))
+
+lines(results_df$threshold, results_df$low_bwt_smoker, col = "blue", lwd = 2)
+
+legend("topright", legend = c("Smoker", "Non-smoker"), 
+       col = c("blue", "red"), lwd = 2)
+
+```
 
 >>2.4.3. Conclusion
 
