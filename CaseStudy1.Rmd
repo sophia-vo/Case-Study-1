@@ -1,17 +1,30 @@
 ---
-title: "Maternal Smoking and Infant Death"
-date: "2024-10-03"
+title: "Maternal Smoking and Infant Death Statistical Analysis"
+date: "2024-10-13"
+authors: "Sophia Vo, Katelyn Zhao"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## 1. Introduction
 
-## 2. Analysis
+1. Introduction
 
-### 2.1 Data Processing
+This report aims to present the results of a statistical analysis done on the differences in weight between babies born to mothers who smoked during pregnancy and those who did not. 
+
+Our analysis aims to answer the question:  Is there a significant difference in birth weight between babies born to women who smoked and those who did not? Using both graphical and numerical approaches to answering this question, we found that [our results].
+
+The dataset used for this analysis contains information from 1236 babies; all male, single births, and lived up to 28 days. Variables in the dataset include birth weight, length of gestation, whether or not this was the mother's first pregnancy, mother's age, mother's height, mother's weight, and whether or not the mother was a smoker. 
+
+The report is structured as follows: Section 2 covers the statistical analysis processes and results and Section 3 discusses the conclusions and implications of the results.
+
+
+2. Analysis
+
+2.1 Data Processing
+
+
 
 ### 2.2 Birth Weight Distributions
 
