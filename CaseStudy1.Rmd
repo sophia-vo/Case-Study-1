@@ -56,8 +56,8 @@ Minimum birth weight among non-smokers: 55 oz
 Maximum birth weight among smokers: 163 oz
 Maximum birth weight among non-smokers: 176 oz
 
-Mean birth weight among smokers: 114.1095 oz
-Mean birth weight among non-smokers: 123.0472 oz
+Mean birth weight among smokers: 113.8192 oz
+Mean birth weight among non-smokers: 123.0853 oz
 
 Median birth weight among smokers: 115 oz
 Median birth weight among non-smokers: 123 oz
@@ -65,7 +65,7 @@ Median birth weight among non-smokers: 123 oz
 Standard deviation among smokers: 18.0989 oz
 Standard deviation among non-smokers: 17.3987 oz
 
-Q1 birth weight among smokers: 102 oz
+Q1 birth weight among smokers: 101 oz
 Q1 birth weight among non-smokers: 113 oz
 
 Q3 birth weight among smokers: 126 oz
@@ -79,7 +79,19 @@ Most of these numerical summaries show that the birth weights of babies of mothe
 We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 
-### 2.3 Graphical Analysis
+2.3 Graphical Analysis
+
+2.3.1 Methods
+
+Now that we've summarized the two distributions numerically, we also want to look at them graphically. 
+
+2.3.2 Analysis
+
+
+
+2.3.3 Conclusion
+
+
 
 ### 2.4 Incidence of Low Birth Weights
 
