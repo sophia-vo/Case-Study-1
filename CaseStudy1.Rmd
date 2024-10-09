@@ -49,7 +49,7 @@ Now that we had examined the dataset and each variable as a whole, we looked at 
 
 2.2.3 Conclusion
 
-We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shape of the two distributions are almost symmetrical.
+We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 ### 2.3 Graphical Analysis
 
