@@ -1,7 +1,7 @@
 ---
 title: "Maternal Smoking and Infant Death Statistical Analysis"
 date: "2024-10-13"
-authors: "Sophia Vo, Katelyn Zhao"
+author: "Sophia Vo, Katelyn Zhao"
 output: pdf_document
 ---
 
@@ -23,16 +23,16 @@ The report is structured as follows: Section 2 covers the statistical analysis p
 
 2. Analysis
 
-2.1 Data Processing
+2.1. Data Processing
 
-2.1.1 Methods
+2.1.1. Methods
 
 The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To do this, we looked at the distributions of each variable graphically using a histogram.
 
 
-2.1.2 Analysis
+2.1.2. Analysis
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width=3, fig.height=3}
 hist(babies$bwt, 
      main = "Birth Weight", 
      xlab = "birth weight (oz)")
@@ -60,20 +60,55 @@ hist(babies$smoke,
 
 While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women had listed gestation periods of up to 1000 days while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
 
+After cleaning the data, we plotted the same histograms again with the cleaned dataset.
 
-2.1.3 Conclusion
+```{r, echo=FALSE, fig.width=3, fig.height=3}
+cleaned_df <- subset(subset(babies, parity <= 1), smoke <= 1)
+cleaned_df <- subset(cleaned_df, weight <= 500)
+cleaned_df <- subset(cleaned_df, gestation <= 375)
+cleaned_df <- subset(cleaned_df, height <= 85)
+cleaned_df <- subset(cleaned_df, age <= 60)
+
+hist(cleaned_df$bwt, 
+     main = "Birth Weight v2.", 
+     xlab = "birth weight (oz)")
+hist(cleaned_df$gestation, 
+     main = "Gestation v2.", 
+     xlab = "length of gestation (days)")
+hist(cleaned_df$parity, 
+     breaks = 2, 
+     main = "First Pregnancy Indicator v2.", 
+     xlab = "parity")
+hist(cleaned_df$age, 
+     main = "Mother's Age v2.", 
+     xlab = "mother's age (yrs)")
+hist(cleaned_df$height, 
+     main = "Mother's Height v2.", 
+     xlab = "mother's height (in)")
+hist(cleaned_df$weight, 
+     main = "Mother's Weight v2.", 
+     xlab = "mother's weight (lbs)")
+hist(cleaned_df$smoke, 
+     breaks = 2, 
+     main = "Whether the Mother Smokes v2.", 
+     xlab = "parity")
+```
+
+
+
+2.1.3. Conclusion
 
 We concluded that the dataset does not qualify as a simple random sample because of the method in which it was collected. In order to qualify as a simple random sample, every pregnant women would need to have had an equal chance of being selected. However, in this dataset the pregnant women selected were limited to a certain time frame (1960-1967) and were limited to a specific health plan in a single region. Therefore, this dataset does not qualify as a simple random sample. This means that the dataset is not representative of the entire population and the results of the analysis cannot be generalized.
 
 
-2.2 Birth Weight Distributions
+2.2. Birth Weight Distributions
 
-2.2.1 Methods
+2.2.1. Methods
 
 Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values.  
 
 
-2.2.2 Analysis
+2.2.2. Analysis
 
 We found that the numerical summaries were as follows:
 
@@ -101,60 +136,60 @@ Q3 birth weight among non-smokers: 134 oz
 Most of these numerical summaries show that the birth weights of babies of mothers who are non-smokers are larger than the birth weights of babies of mothers who are smokers.
 
 
-2.2.3 Conclusion
+2.2.3. Conclusion
 
 We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 
-2.3 Graphical Analysis
+2.3. Graphical Analysis
 
-2.3.1 Methods
+2.3.1. Methods
 
 Now that we've summarized the two distributions numerically, we also want to look at them graphically. 
 
-2.3.2 Analysis
+2.3.2. Analysis
+
+We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison
+
+```{r, echo=FALSE, include=FALSE}
+smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
+nonsmoker_df <- cleaned_df[cleaned_df$smoke == 0,]
+p1 <- hist(smoker_df$bwt, freq = FALSE)
+p2 <- hist(nonsmoker_df$bwt, freq = FALSE)
+```
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+plot( p1, 
+      col=rgb(0,0,1,1/4),
+      main = "Birth Weights",
+      xlim = c(50,190),
+      freq = FALSE,
+      ylim = c(0,0.026),
+      xlab = "birth weight (oz)")
+
+plot( p2, 
+      col=rgb(1,0,0,1/4),  
+      xlim = c(50,190),
+      freq = FALSE,
+      add = TRUE)
+
+legend(150, 0.025, 
+       c("smokers", "nonsmokers"), 
+       lwd=4, 
+       col=c(rgb(0,0,1,1/4), rgb(1,0,0,1/4)))
+```
+
+
+2.3.3. Conclusion
 
 
 
-2.3.3 Conclusion
+2.4. Incidence of Low Birth Weights
 
+2.4.1. Methods
 
+2.4.2. Analysis
 
-2.4 Incidence of Low Birth Weights
-
-2.4.1 Methods
-
-2.4.2 Analysis
-
-2.4.3 Conclusion
+2.4.3. Conclusion
 
 3. Discussion
-
-
-
-
-
-
-
-
-
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
