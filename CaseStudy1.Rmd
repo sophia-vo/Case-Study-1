@@ -101,7 +101,7 @@ hist(cleaned_df$smoke,
 >>We concluded that the dataset does not qualify as a simple random sample because of the method in which it was collected. In order to qualify as a simple random sample, every pregnant women would need to have had an equal chance of being selected. However, in this dataset the pregnant women selected were limited to a certain time frame (1960-1967) and were limited to a specific health plan in a single region. Therefore, this dataset does not qualify as a simple random sample. This means that the dataset is not representative of the entire population and the results of the analysis cannot be generalized.
 
 
->2.2. Birth Weight Distributions
+>2.2. Numerical Analysis of Birth Weight Distributions
 
 >> 2.2.1. Methods
 
@@ -134,7 +134,7 @@ kable(numerical_summaries, caption = "Numerical Differences in Distributions of 
 >>We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 
->2.3. Graphical Analysis
+>2.3. Graphical Analysis of Birth Weight Distributions
 
 >>2.3.1. Methods
 
@@ -177,7 +177,7 @@ legend(150, 0.025,
 
 >>Based on the layering of the two distributions, the distribution of the baby weights of the mothers who are smokers is shifted to the left of the the distribution of the baby weights of the mothers who are non-smokers. This shows that overall, the baby weights of mothers who are smokers is less than the baby weights of mothers who are non-smokers. To determine whether or not this amount is significant, further analysis would need to be done.
 
->2.4. Incidence of Low Birth Weights
+>2.4. Incidence Analysis of Low Birth Weights
 
 >>2.4.1. Methods
 
@@ -240,5 +240,13 @@ legend("topright", legend = c("Smoker", "Non-smoker"),
 >>2.4.3. Conclusion
 
 >>As shown in the graph above, the incidences of low-weight babies in smoking mothers is greater than the incidences of low-weight babies in non-smoking mothers when the threshold for low-weight babies is between 70 and 120. Outside of that range, the results are flipped.
+
+>2.5 Comparative Analysis of Various Analysis Types
+
+>>Numerical Analysis
+
+>>Graphical Analysis
+
+>>Incidence Analysis
 
 3. Discussion
