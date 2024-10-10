@@ -201,7 +201,7 @@ for (threshold in 55:176) {
 
 plot(results_df$threshold, results_df$low_bwt_nonsmoker, type = "l", 
      col = "red", lwd = 2, 
-     xlab = "Threshold (grams)", 
+     xlab = "Threshold (ounces)", 
      ylab = "Proportion of Low Birth Weight Babies", 
      main = "Low Birth Weight Babies by Smoking Status",
      xlim = c(55,176),

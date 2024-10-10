@@ -191,6 +191,8 @@ legend(150, 0.025,
 
 >>Percentage of low-weight babies in non-smoking mothers: 35.29412%
 
+>>Then, we wanted to visualize the changes in the incidences of low birth weights as the threshold changes. So, we used every integer between the minimum and maximum birth weights as a threshold and recorded how the percentages of low-weight babies in smoking vs. non-smoking mothers changed. The results of this are shown below.
+
 ```{r, echo=FALSE, fig.width=7, fig.height=4}
 low_weight_babies_df <- cleaned_df[cleaned_df$bwt < 100,]
 
@@ -222,7 +224,7 @@ for (threshold in 55:176) {
 
 plot(results_df$threshold, results_df$low_bwt_nonsmoker, type = "l", 
      col = "red", lwd = 2, 
-     xlab = "Threshold (grams)", 
+     xlab = "Threshold (ounces)", 
      ylab = "Proportion of Low Birth Weight Babies", 
      main = "Low Birth Weight Babies by Smoking Status",
      xlim = c(55,176),
@@ -237,4 +239,6 @@ legend("topright", legend = c("Smoker", "Non-smoker"),
 
 >>2.4.3. Conclusion
 
->3. Discussion
+>>As shown in the graph above, the incidences of low-weight babies in smoking mothers is greater than the incidences of low-weight babies in non-smoking mothers when the threshold for low-weight babies is between 70 and 120. Outside of that range, the results are flipped.
+
+3. Discussion
