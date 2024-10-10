@@ -4,14 +4,13 @@
 babies <- read.table("babies.txt", header = TRUE, sep="")
 
 # Variable descriptions
-bwt_description <- "numerical; birthweight, in ounces"
-gestation_description <- "numerical; length of gestation, in days"
+bwt_description <- "numerical-discrete; birthweight, in ounces"
+gestation_description <- "numerical-discrete; length of gestation, in days"
 parity_description <- "categorical; binary indicator for a first pregnancy (0 = first pregnancy)"
-age_description <- "numerical; mother’s age in years"
-height_description <- "numerical; mother’s height in inches"
-weight_description <- "numerical; mother’s weight in pounds"
+age_description <- "numerical-discrete; mother’s age in years"
+height_description <- "numerical-discrete; mother’s height in inches"
+weight_description <- "numerical-discrete; mother’s weight in pounds"
 smoke_description <- "categorical; binary indicator for whether the mother smokes (0 = no)"
-
 
 # Initial histograms prior to cleaning
 hist(babies$bwt, 
