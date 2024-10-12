@@ -1,7 +1,8 @@
 ---
 title: "Maternal Smoking and Infant Death Statistical Analysis"
-date: "2024-10-13"
+date: "October 13, 2024"
 output: pdf_document
+fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
