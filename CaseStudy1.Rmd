@@ -16,13 +16,14 @@ Student 1 and Student 2 collaborated on the Introduction, analyses 1-5 in Sectio
 
 # 1 Introduction
 
-This report investigates the potential differences in birth weight between babies born to mothers who smoked during pregnancy and those who did not. Epidemiological research has consistently linked smoking during pregnancy to low birth weights and preterm birth. Birth weight can be an indicator of a newborn's health, with lower birth weights associated with an increased risk of infant mortality. This study seeks to quantify the effects of maternal smoking on infant birth weight through statistical analysis using data from the Child Health and Development Studies (CHDS) dataset. 
+This report investigates the potential differences in birth weight between babies born to mothers who smoked during pregnancy and those who did not. Epidemiological research has consistently linked smoking during pregnancy to low birth weights and preterm birth. Birth weight is an indicator of a newborn's health, with lower birth weights associated with an increased risk of infant mortality. This study seeks to quantify the effects of maternal smoking on infant health through statistical analysis using data from the Child Health and Development Studies (CHDS) dataset. 
 
 The CHDS dataset includes data on 1236 babies, all male, who were born between 1960 and 1967 to mothers enrolled in the Kaiser Health Plan in Oakland, California. Each baby was a single birth and survived for at least 28 days after birth. Variables in the dataset include birth weight, length of gestation, whether or not this was the mother's first pregnancy, mother's age, mother's height, mother's weight, and whether or not the mother was a smoker. 
 
-The primary objective is to answer the question: Is there a statistically significant difference in birth weights between babies born to mothers who smoked during pregnancy and those who did not? Specifically, we will explore the distribution of birth weights for both smokers and non-smokers, the incidence of low birth weights (under 100 ounces) in both groups, and the potential variability in these comparisons based on different statistical methods. Using numerical, graphical, and incidence comparison approaches to answering this question, we found that maternal smoking significantly impacts birth weight. Babies born to mothers who smoked during pregnancy tended to have lower birth weights on average (~10 oz) compared to those born to non-smokers.
+The primary objective is to answer the question: Is there a statistically significant difference in birth weights between babies born to mothers who smoked during pregnancy and those who did not? Specifically, we will explore the distribution of birth weights for both smokers and non-smokers, the incidence of low birth weight (under 100 ounces) in both groups, the potential variability in these comparisons based on different statistical methods. Using numerical, graphical, and incidence comparison approaches to answering this question, we found that maternal smoking significantly impacts birth weight. Babies born to mothers who smoked during pregnancy tended to have lower birth weights on average (~10 oz) compared to those born to non-smokers.
 
-The report is structured as follows: Section 1 addresses each of the research questions outlined above, focusing on the numerical, graphical, and incidence comparisons between the smoking and non-smoking groups; Section 2 covers the statistical analysis processes and results; Section 3 expands the analysis by examining other variables that may impact birth weight; and Section 4 discusses the conclusions, limitations, and implications of the results. Overall, this report will determine whether the difference in weight between babies born to mothers who smoked during pregnancy and those who did not is significant for the health of the baby.
+The report is structured as follows: Section 1 addresses each of the research questions outlined above, focusing on the numerical, graphical, and incidence comparisons between the smoking and non-smoking groups; Section 2 covers the statistical analysis processes and results; Section 3 expands the analysis by examining other variables that may impact birth weight; and Section 4 discusses the conclusions and implications of the results. Overall, this report will determine whether the difference in weight between babies born to mothers who smoked during pregnancy and those who did not is significant for the health of the baby.
+
 
 # 2 Analysis
 
@@ -43,6 +44,10 @@ hist(babies$gestation,
      main = "Gestation", 
      xlab = "length of gestation (days)",
      font.main = 1)
+```
+\pagebreak
+
+```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 hist(babies$parity, 
      breaks = 2, 
      main = "First Pregnancy Indicator", 
@@ -73,7 +78,7 @@ cleaned_df <- subset(cleaned_df, height <= 85)
 cleaned_df <- subset(cleaned_df, age <= 60)
 ```
 
-Several outliers and inconsistencies were identified in the data, which may distort the results of our analyses. The dataset includes a binary indicator for whether the pregnancy was the first for the mother. Since parity can only take on 0 (first pregnancy) or 1 (subsequent pregnancy), we removed any entries that were not 0 or 1. The current maximum height of a woman, based on the Guinness World Record, is 7 feet 0.7 inch (84.7 inches); we set the upper limit for height at 85 inches to account for potential data entry errors or unreasonable outliers. The longest pregnancy recorded lasted 375 days; gestation values exceeding this were excluded from the dataset as unrealistic outliers. We set an upper weight limit of 500 pounds, which is extremely high but not impossible. Women weighing over 500 lbs are not too rare, but are typically associated with severe health conditions, which would significantly skew the dataset. Excluding such outliers helps avoids distorting results. Similarly, we set the maximum reasonable age for a mother's age to be 60 years. Pregnancies above this age are exceptionally rare and could result from data recording errors.
+Several outliers and inconsistencies were identified in the data, which may distort the results of our analyses. The dataset includes a binary indicator for whether the pregnancy was the first for the mother. Since parity can either take on 0 (first pregnancy) or 1 (subsequent pregnancy), we removed any entries that were not 0 or 1. The current maximum height of a woman, based on the Guinness World Record, is 7 feet 0.7 inch (84.7 inches); we set the upper limit for height at 85 inches to account for potential data entry errors or unreasonable outliers. The longest pregnancy recorded lasted 375 days; gestation values exceeding this were excluded from the dataset as unrealistic outliers. We set an upper weight limit of 500 pounds, which is extremely high but not impossible. Women weighing over 500 lbs are not too rare, but are typically associated with severe health conditions, which would significantly skew the dataset. Excluding such outliers helps avoids distorting results. Similarly, we set the maximum reasonable age for a mother's age to be 60 years. Pregnancies above this age are exceptionally rare and could result from data recording errors.
 
 After cleaning the data, we plotted the distributions of each variable to confirm that the cleaning process successfully addressed the outliers and inconsistencies. These graphs, presented in the Appendix, reflect the revised dataset and provide a more accurate representation of the variables.
 
@@ -88,6 +93,8 @@ We concluded that the dataset does not qualify as a simple random sample because
 ### 2.2.1. Methods
 
 Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values. This will allow us to understand the basic characteristics of the data before we perform any visualizations.  
+
+\pagebreak
 
 ### 2.2.2. Analysis
 
@@ -242,7 +249,7 @@ The last type of analysis used was incidence analysis, where we looked at rates 
 
 ### Conclusion
 
-The results of each analysis strongly suggest that smoking has a significant effect on birth weight and increases the risk of preterm births. The summary statistics reveal that mothers who smoke have babies with lower birth weights on average, the graph of the distribution of smokers was shifted to the left of the graph of the distribution of non-smokers, and the proportion of low birth weights among smokers (64.71%) is substantially higher than that among non-smokers (35.29%).
+The results of the analysis strongly suggest that smoking has a significant effect on birth weight and increases the risk of preterm births. The summary statistics reveal that mothers who smoke have babies with lower birth weights on average, and the proportion of low birth weights among smokers (64.71%) is substantially higher than that among non-smokers (35.29%).
 
 # 3 Advanced Analysis
 
@@ -297,7 +304,8 @@ The following boxplot shows the distribution of gestation lengths for smokers an
 boxplot(gestation ~ smoke, data = cleaned_df, 
         main = "Gestation Length", 
         xlab = "Smoking (0 = No, 1 = Yes)", 
-        ylab = "Gestation Length (days)")
+        ylab = "Gestation Length (days)",
+        font.main = 1)
 ```
 To determine if the observed difference in gestation lengths between smokers and non-smokers is statistically significant, we will perform a t-test, providing the t-value, p-value, and 95% Confidence Interval. A p-value less than 0.05 would indicate a statistically significant difference in gestation lengths between smokers and non-smokers.
 
@@ -305,13 +313,17 @@ From the summary statistics, we observe that the mean, median, first and third q
 
 # 4 Discussion
 
-The primary goal of this analysis was to find out if there was a statistically significant difference between the birth weights of babies that were born from smoking mothers and non-smoking mothers. We used the Child Health and Development Studies (CHDS) dataset to identify the effects of maternal smoking using numerical, graphical, and incidence comparison methods. We found that all three types of analysis suggest that there is a difference. Specifically, babies that were born from smoking mothers tend to be lighter than babies that were born from non-smoking mothers. On average, babies born to mothers who smoked during pregnancy weighed 10 ounces less than those born to non-smokers. The incidence of low birth weight (under 100 ounces) was much higher among babies born to smokers (64.71%) compared to non-smokers (35.29%). We even looked into other variables, like gestation period, further showing how smoking mothers tend to give birth to babies of lower weights. Our advanced analysis revealed that smoking not only affects birth weight but also leads to shorter gestation periods, increasing the likelihood of preterm births.
+The primary goal of this analysis was to find out if there was a statistically significant difference in birth weights between babies born from smoking mothers and non-smoking mothers. We used the Child Health and Development Studies (CHDS) dataset identify the effects of maternal smoking using numerical, graphical, and incidence comparison methods. 
+
+We found that all three types of analysis suggested a clear distinction. Specifically, babies that were born from smoking mothers tend to be lighter than babies that were born from non-smoking mothers. On average, babies born to mothers who smoked during pregnancy weighed 10 ounces less than those born to non-smokers. The incidence of low birth weight (under 100 ounces) was much higher among babies born to smokers (64.71%) compared to non-smokers (35.29%). We looked at additional variables, the gestation period, which further demonstrated how smoking mothers tend to give birth to babies of lower weights. Our advanced analysis revealed that smoking not only affects birth weight but also leads to shorter gestation periods, increasing the likelihood of preterm births.
 
 The findings of this study are consistent with previous research that has shown smoking during pregnancy to be a significant risk factor for low birth weight and preterm birth. Low birth weight is a well-known indicator of poor newborn health, and babies with lower birth weights are at increased risk for infant mortality.
 
-However, our results cannot be generalized to the entire population. In other words, we cannot say that all smoking mothers tend to give birth to babies of lower weights. This is due to the nature of our sample, which wasn't representative of the entire population that we wanted to study (pregnant mothers). 
+However, there are several limitations to this analysis; our results cannot be generalized to the entire population. In other words, we cannot say that all smoking mothers tend to give birth to babies of lower weights. This is due to the nature of our sample, which wasn't representative of the entire population that we wanted to study (pregnant mothers).
 
-Other limitations of this dataset may also affect the applicability of our results. 
+During data cleaning, outliers and invalid data values were removed to avoid skewing the data results. However, there remains the possibility of legitimate outliers that could provide other insight. 
+
+Other limitations of this dataset may also affect the applicability of our results: 
 
 - The dataset only provides data about women in 1960 to 1967, meaning the results from this analysis may no longer be relevant to women in the present time. 
 - The absence of data on female babies and multiple-birth babies also limits the applicability of our findings.
