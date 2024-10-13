@@ -239,7 +239,7 @@ The second type of analysis used was graphical, where we graphed the two distrib
 
 ### Incidence Analysis
 
-The last type of analysis used was incidence analysis, where we looked at rates of low-births in each distribution at different thresholds. 
+The last type of analysis used was incidence analysis, where we looked at rates of low-births in each distribution using 100 ounces as the threshold for a low-weight birth. This type of analysis allowed us to directly compare the proportion of low-weight babies across the two different groups (smoking and non-smoking mothers). These numbers are straightforward and easy to understand, making it useful for communicating results to those who may not understand statistics. 
 
 ### Conclusion
 
