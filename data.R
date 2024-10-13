@@ -12,6 +12,7 @@ height_description <- "numerical-discrete; mother’s height in inches"
 weight_description <- "numerical-discrete; mother’s weight in pounds"
 smoke_description <- "categorical; binary indicator for whether the mother smokes (0 = no)"
 
+
 # Initial histograms prior to cleaning
 hist(babies$bwt, 
      main = "Birth Weight", 
@@ -32,8 +33,7 @@ hist(babies$height,
 hist(babies$weight, 
      main = "Mother's Weight", 
      xlab = "weight (lbs)")
-hist(babies$smoke,
-     breaks= 2,
+hist(babies$smoke, 
      main = "Whether the Mother Smokes", 
      xlab = "parity")
 
@@ -76,15 +76,15 @@ smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
 nonsmoker_df <- cleaned_df[cleaned_df$smoke == 0,]
 
 # Minimum and maximum
-smoker_min_bwt <- min(smoker_df$bwt) # 58 oz
+smoker_min_bwt <- min(smoker_df$bwt) # 58L oz
 smoker_max_bwt <- max(smoker_df$bwt) # 163 oz
 
 nonsmoker_min_bwt <- min(nonsmoker_df$bwt) # 55 oz
 nonsmoker_max_bwt <- max(nonsmoker_df$bwt) # 176 oz
 
 # Mean
-smoker_mean_bwt <- mean(smoker_df$bwt) # 113.8192 oz
-nonsmoker_mean_bwt <- mean(nonsmoker_df$bwt) # 123.0853 oz
+smoker_mean_bwt <- mean(smoker_df$bwt) # 114.1095 oz
+nonsmoker_mean_bwt <- mean(nonsmoker_df$bwt) # 123.0472 oz
 
 # Median
 smoker_median_bwt <- median(smoker_df$bwt) #115 oz
@@ -97,7 +97,7 @@ nonsmoker_quartiles <- quantile(nonsmoker_df$bwt, probs = c(0.25,0.5,0.75))
 names(smoker_quartiles) <- NULL
 names(nonsmoker_quartiles) <- NULL
 
-smoker_q1_bwt <- smoker_quartiles[1] # 101 oz
+smoker_q1_bwt <- smoker_quartiles[1] # 102 oz
 smoker_q2_bwt <- smoker_quartiles[2] # 115 oz
 smoker_q3_bwt <- smoker_quartiles[3] # 126 oz
 
@@ -106,8 +106,8 @@ nonsmoker_q2_bwt <- nonsmoker_quartiles[2] #123 oz
 nonsmoker_q3_bwt <- nonsmoker_quartiles[3] #134 oz
 
 # Standard Deviation
-smoker_std_bwt <- sd(smoker_df$bwt) # 18.0989 oz
-nonsmoker_std_bwt <- sd(nonsmoker_df$bwt) # 17.3987 oz
+smoker_std_bwt <- sd(smoker_df$bwt) # 18.2950 oz
+nonsmoker_std_bwt <- sd(nonsmoker_df$bwt) # 17.4237 oz
 
 
 # Graphical Summaries -----------------------------------------------------
@@ -125,22 +125,22 @@ hist(nonsmoker_df$bwt,
      col=rgb(1,0,0,1/4))
 
 # Layered Histograms with Density
-p1 <- hist(smoker_df$bwt, freq = FALSE)
-p2 <- hist(nonsmoker_df$bwt, freq = FALSE)
+p1 <- hist(smoker_df$bwt, freq = F)
+p2 <- hist(nonsmoker_df$bwt, freq = F)
 
 plot( p1, 
       col=rgb(0,0,1,1/4),
       main = "Birth Weights",
       xlim = c(50,190),
-      freq = FALSE,
+      freq = F,
       ylim = c(0,0.026),
       xlab = "birth weight (oz)")
 
 plot( p2, 
       col=rgb(1,0,0,1/4),  
       xlim = c(50,190),
-      freq = FALSE,
-      add = TRUE)
+      freq = F,
+      add = T)
 
 legend(150, 0.025, 
        c("smokers", "nonsmokers"), 
@@ -158,7 +158,7 @@ plot( p1,
 plot( p2, 
       col=rgb(1,0,0,1/4),  
       xlim = c(50,190),
-      add = TRUE)
+      add = T)
 
 legend(150, 190, 
        c("smokers", "nonsmokers"), 
@@ -200,7 +200,7 @@ for (threshold in 55:176) {
 
 plot(results_df$threshold, results_df$low_bwt_nonsmoker, type = "l", 
      col = "red", lwd = 2, 
-     xlab = "Threshold (ounces)", 
+     xlab = "Threshold (grams)", 
      ylab = "Proportion of Low Birth Weight Babies", 
      main = "Low Birth Weight Babies by Smoking Status",
      xlim = c(55,176),
@@ -210,3 +210,57 @@ lines(results_df$threshold, results_df$low_bwt_smoker, col = "blue", lwd = 2)
 
 legend("topright", legend = c("Smoker", "Non-smoker"), 
        col = c("blue", "red"), lwd = 2)
+
+
+# Advanced Analysis -------------------------------------------------------
+
+# Summary Statistics for Smokers and Non-Smokers
+mean_gestation_smoker <- mean(smoker_df$gestation, na.rm = TRUE)
+mean_gestation_nonsmoker <- mean(nonsmoker_df$gestation, na.rm = TRUE)
+
+sd_gestation_smoker <- sd(smoker_df$gestation, na.rm = TRUE)
+sd_gestation_nonsmoker <- sd(nonsmoker_df$gestation, na.rm = TRUE)
+
+median_gestation_smoker <- median(smoker_df$gestation)
+median_gestation_nonsmoker <- median(nonsmoker_df$gestation)
+
+smoker_quartiles_gestation <- quantile(smoker_df$gestation, probs = c(0.25,0.5,0.75))
+nonsmoker_quartiles_gestation <- quantile(nonsmoker_df$gestation, probs = c(0.25,0.5,0.75))
+
+names(smoker_quartiles_gestation) <- NULL
+names(nonsmoker_quartiles_gestation) <- NULL
+
+smoker_q1_gestation <- smoker_quartiles_gestation[1]
+smoker_q3_gestation <- smoker_quartiles[3]
+
+nonsmoker_q1_gestation <- nonsmoker_quartiles_gestation[1]
+nonsmoker_q3_gestation <- nonsmoker_quartiles_gestation[3]
+# Histograms for Gestation Length
+par(mfrow=c(1,2))
+
+# Smokers
+hist(smoker_df$gestation, 
+     main = "Gestation Length - Smokers", 
+     xlab = "Gestation Length (days)", 
+     col = "red", 
+     breaks = 20)
+
+# Non-Smokers
+hist(nonsmoker_df$gestation, 
+     main = "Gestation Length - Non-Smokers", 
+     xlab = "Gestation Length (days)", 
+     col = "blue", 
+     breaks = 20)
+
+par(mfrow=c(1,1))
+
+# Comparing Gestation Length for Smokers and Non-Smokers
+boxplot(gestation ~ smoke, data = cleaned_df, 
+        main = "Gestation Length by Smoking Status", 
+        xlab = "Smoking (0 = No, 1 = Yes)", 
+        ylab = "Gestation Length (days)")
+
+# T-Test
+t_test_gestation <- t.test(smoker_df$gestation, nonsmoker_df$gestation, var.equal = TRUE)
+t_test_gestation
+
