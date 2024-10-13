@@ -319,9 +319,7 @@ Other limitations of this dataset may also affect the applicability of our resul
 
 We acknowledge the presence of these limitations and understand their affects on the generalizability of our results.
 
-Other observations made during the analysis process...
-
-Future considerations include looking at...
+Future considerations include looking at other variables in the dataset like maternal weight. Underweight mothers are more likely to give birth to low-weight babies while overweight mothers are more likely to give birth to higher-weight babies. Since nicotine is known to be an appetite suppressant, there may be an association between maternal smoking, maternal smoking, and birthweight. 
 
 # 5 Appendix
 
