@@ -299,6 +299,16 @@ From the summary statistics, we observe that the mean, median, first and third q
 
 # 4 Discussion
 
+The primary goal was to determine whether there is a statistically significant difference in birth weights between babies born to mothers who smoked during pregnancy and those who did not. We used the Child Health and Development Studies (CHDS) dataset identify the effects of maternal smoking using numerical, graphical, and incidence comparison methods.
+
+We found that smoking during pregnancy is associated with lower birth weights. On average, babies born to mothers who smoked during pregnancy weighed 10 ounces less than those born to non-smokers. The incidence of low birth weight (under 100 ounces) was much higher among babies born to smokers (64.71%) compared to non-smokers (35.29%). Our advanced analysis revealed that smoking not only affects birth weight but also leads to shorter gestation periods, increasing the likelihood of preterm births.
+
+The findings of this study are consistent with previous research that has shown smoking during pregnancy to be a significant risk factor for low birth weight and preterm birth. Low birth weight is a well-known indicator of poor newborn health, and babies with lower birth weights are at increased risk for infant mortality.
+
+However, there are several limitations to this analysis. The CHDS dataset is not a simple random sample, collected from mothers enrolled in the Kaiser Health Plan in Oakland, California, between 1960 and 1967. The results of this study may not be generalizable to other populations due to this bias. During data cleaning, outliers and invalid data values were removed to avoid skewing the data results. However, there remains the possibility of legitimate outliers that could provide other insight. 
+
+tbc, etc, etc
+
 # 5 Appendix
 
 ## Distribution of the Cleaned Data {#distribution-appendix}
