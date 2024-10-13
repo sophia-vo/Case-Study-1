@@ -74,7 +74,7 @@ Several outliers and inconsistencies were identified in the data, which may dist
 
 After cleaning the data, we plotted the distributions of each variable to confirm that the cleaning process successfully addressed the outliers and inconsistencies. These graphs, presented in the Appendix, reflect the revised dataset and provide a more accurate representation of the variables.
 
-Refer to the Appendix for the revised histograms of birth weight, gestation, parity, mother's age, height, and weight.
+Refer to the [Appendix](#distribution-appendix) for the revised histograms of birth weight, gestation, parity, mother's age, height, and weight.
 
 ### 2.1.3. Conclusion
 
@@ -95,8 +95,8 @@ library(knitr)
 library(kableExtra)
 
 numerical_summaries <- data.frame(
-  Smokers = c(58, 163, 113.8192, 115, 18.0989, 101, 126),
-  Non_Smokers = c(55, 176, 123.0853, 123, 17.3987, 113, 134)
+  Smokers = c(58, 163, 113.8192, 115, 18.2950, 101, 126),
+  Non_Smokers = c(55, 176, 123.0853, 123, 17.4237, 113, 134)
 )
 rownames(numerical_summaries) <- c("Minimum", "Maximum", "Mean", "Median", "Standard Deviation", "Q1", "Q3")
 
@@ -236,11 +236,68 @@ The results of the analysis strongly suggest that smoking has a significant effe
 
 # 3 Advanced Analysis
 
+We will explore the relationship between maternal smoking and gestation length, focusing on preterm births (defined as gestation periods less than 259 days). Smoking is known to be associated with shortened gestation and increased rates of preterm birth, and advertedly lower birth weights.
+
+We begin by summarizing the gestation lengths for both smokers and non-smokers:
+
+```{r, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+mean_gestation_smoker <- mean(smoker_df$gestation)
+mean_gestation_nonsmoker <- mean(nonsmoker_df$gestation)
+
+min_gestation_smoker <- min(smoker_df$gestation)
+min_gestation_nonsmoker <- min(nonsmoker_df$gestation)
+
+max_gestation_smoker <- max(smoker_df$gestation)
+max_gestation_nonsmoker <- max(nonsmoker_df$gestation)
+
+median_gestation_smoker <- median(smoker_df$gestation)
+median_gestation_nonsmoker <- median(nonsmoker_df$gestation)
+
+sd_gestation_smoker <- sd(smoker_df$gestation)
+sd_gestation_nonsmoker <- sd(nonsmoker_df$gestation)
+
+smoker_quartiles_gestation <- quantile(smoker_df$gestation, probs = c(0.25,0.5,0.75))
+nonsmoker_quartiles_gestation <- quantile(nonsmoker_df$gestation, probs = c(0.25,0.5,0.75))
+
+names(smoker_quartiles_gestation) <- NULL
+names(nonsmoker_quartiles_gestation) <- NULL
+
+smoker_q1_gestation <- smoker_quartiles_gestation[1]
+smoker_q3_gestation <- smoker_quartiles_gestation[3]
+
+nonsmoker_q1_gestation <- nonsmoker_quartiles_gestation[1]
+nonsmoker_q3_gestation <- nonsmoker_quartiles_gestation[3]
+
+numerical_summaries <- data.frame(
+  Smokers = c(min_gestation_smoker, max_gestation_smoker, mean_gestation_smoker, median_gestation_smoker, sd_gestation_smoker, smoker_q1_gestation, smoker_q3_gestation),
+  Non_Smokers = c(min_gestation_nonsmoker, max_gestation_nonsmoker, mean_gestation_nonsmoker, median_gestation_nonsmoker, sd_gestation_nonsmoker, nonsmoker_q1_gestation, nonsmoker_q3_gestation)
+)
+rownames(numerical_summaries) <- c("Min", "Max", "Mean", "Median", "Standard Deviation", "Q1", "Q3")
+
+kable(numerical_summaries, caption = "Numerical Differences in Distributions of Smoking and Non-Smoking Mothers") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), full_width = FALSE)
+```
+
+The following boxplot shows the distribution of gestation lengths for smokers and non-smokers:
+
+```{r, echo=FALSE, fig.width=4, fig.height=6, fig.align = 'center'}
+boxplot(gestation ~ smoke, data = cleaned_df, 
+        main = "Gestation Length", 
+        xlab = "Smoking (0 = No, 1 = Yes)", 
+        ylab = "Gestation Length (days)")
+```
+To determine if the observed difference in gestation lengths between smokers and non-smokers is statistically significant, we will perform a t-test, providing the t-value, p-value, and 95% Confidence Interval. A p-value less than 0.05 would indicate a statistically significant difference in gestation lengths between smokers and non-smokers.
+
+From the summary statistics, we observe that the mean, median, first and third quartile gestation length is shorter for smokers compared to non-smokers. The boxplot supports this difference, showing a slight leftward shift in the distribution of gestation lengths for smokers. The t-test confirms whether this difference is statistically significant, with a p-value of 0.03895697, refer to [Appendix: T-Test for Gestation Length](#t-test-appendix). Smoking appears to be associated with shorter gestation periods, which can increase the risk of preterm birth.
+
 # 4 Discussion
 
 # 5 Appendix
 
-### Distribution of the Cleaned Data
+## Distribution of the Cleaned Data {#distribution-appendix}
 ```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 hist(cleaned_df$bwt, 
      main = "Birth Weight", 
@@ -272,5 +329,34 @@ hist(cleaned_df$smoke,
      main = "Whether the Mother Smokes", 
      xlab = "parity",
      font.main = 1)
-
 ```
+
+## T-Test for Gestation Length {#t-test-appendix}
+
+This test is used to determine if there is a statistically significant difference in the means of two independent groups.
+
+We assume:
+
+1. **Independence:** The data from the two groups (smokers and non-smokers) are independent. Since each row in our dataset represents a unique pregnancy, the assumption of independence is satisfied.
+   
+2. **Normality:** The distribution of gestation lengths in each group is approximately normal. While the histograms suggest some deviations from normality, given the large sample sizes, the Central Limit Theorem justifies use of the T-test.
+   
+3. **Equal Variance:** The t-test assumes that the variances in gestation length between the two groups are roughly equal.
+
+### Hypotheses:
+
+- **Null Hypothesis (H0):** The mean gestation length for mothers who smoke is equal to the mean gestation length for mothers who do not smoke.
+
+- **Alternative Hypothesis (H1):** The mean gestation length for mothers who smoke is different from the mean gestation length for mothers who do not smoke.
+
+### Test Statistic:
+
+Using the `t.test()` function, we computed the test statistic and p-value with a **95% confidence level**.
+
+- **t-statistic**: The computed t-statistic was **-2.0670**.
+- **Degrees of Freedom (df)**: 1172.
+- **p-value**: The p-value for the t-test was **0.03895697**, which is far below the 0.05 significance level. This allows us to reject the null hypothesis.
+
+### Conclusion:
+
+Since the p-value is less than 0.05, we reject the null hypothesis and conclude there is a statistically significant difference in the mean gestation length between smokers and non-smokers. Smokers tend to have shorter gestation periods, which aligns with our expectations based on prior epidemiological studies. This is further supported by the increased proportion of under-weight births observed in the smoking group.
