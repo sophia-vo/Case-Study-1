@@ -12,7 +12,7 @@ babies <- read.table("babies.txt", header = TRUE, sep="")
 
 ## Contribution
 
-Student 1 ... Student 2 ...
+Student 1 and Student 2 collaborated on the Introduction, analyses 1-5 in Section 2, and the Conclusion. Student 2 completed the Advanced Analysis section and wrote the code for the analysis and visualizations in the R-file, while Student 1 organized the data visualizations throughout the report. Both students worked together on formatting the PDF, and Student 2 completed the Appendix.
 
 # 1 Introduction
 
@@ -44,6 +44,10 @@ hist(babies$gestation,
      main = "Gestation", 
      xlab = "length of gestation (days)",
      font.main = 1)
+```
+\pagebreak
+
+```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 hist(babies$parity, 
      breaks = 2, 
      main = "First Pregnancy Indicator", 
@@ -89,6 +93,8 @@ We concluded that the dataset does not qualify as a simple random sample because
 ### 2.2.1. Methods
 
 Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values. This will allow us to understand the basic characteristics of the data before we perform any visualizations.  
+
+\pagebreak
 
 ### 2.2.2. Analysis
 
