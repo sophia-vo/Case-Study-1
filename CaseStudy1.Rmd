@@ -306,7 +306,9 @@ From the summary statistics, we observe that the mean, median, first and third q
 
 # 4 Discussion
 
-The goal of this analysis was to find out if there was a statistically significant difference between the birth weights of babies that were born from smoking mothers and non-smoking mothers. Using numerical, graphical, and incidence comparisons, we found that all three types of analysis suggest that there is a difference. Specifically, babies that were born from smoking mothers tend to be lighter than babies that were born from non-smoking mothers. We even looked into other variables, like gestation period, further showing how smoking mothers tend to give birth to babies of lower weights.
+The primary goal of this analysis was to find out if there was a statistically significant difference between the birth weights of babies that were born from smoking mothers and non-smoking mothers. We used the Child Health and Development Studies (CHDS) dataset to identify the effects of maternal smoking using numerical, graphical, and incidence comparison methods. We found that all three types of analysis suggest that there is a difference. Specifically, babies that were born from smoking mothers tend to be lighter than babies that were born from non-smoking mothers. On average, babies born to mothers who smoked during pregnancy weighed 10 ounces less than those born to non-smokers. The incidence of low birth weight (under 100 ounces) was much higher among babies born to smokers (64.71%) compared to non-smokers (35.29%). We even looked into other variables, like gestation period, further showing how smoking mothers tend to give birth to babies of lower weights. Our advanced analysis revealed that smoking not only affects birth weight but also leads to shorter gestation periods, increasing the likelihood of preterm births.
+
+The findings of this study are consistent with previous research that has shown smoking during pregnancy to be a significant risk factor for low birth weight and preterm birth. Low birth weight is a well-known indicator of poor newborn health, and babies with lower birth weights are at increased risk for infant mortality.
 
 However, our results cannot be generalized to the entire population. In other words, we cannot say that all smoking mothers tend to give birth to babies of lower weights. This is due to the nature of our sample, which wasn't representative of the entire population that we wanted to study (pregnant mothers). 
 
@@ -319,7 +321,7 @@ Other limitations of this dataset may also affect the applicability of our resul
 
 We acknowledge the presence of these limitations and understand their affects on the generalizability of our results.
 
-Future considerations include looking at other variables in the dataset like maternal weight. Underweight mothers are more likely to give birth to low-weight babies while overweight mothers are more likely to give birth to higher-weight babies. Since nicotine is known to be an appetite suppressant, there may be an association between maternal smoking, maternal smoking, and birthweight. 
+Future considerations include looking at other variables in the dataset like maternal weight. Underweight mothers are more likely to give birth to low-weight babies while overweight mothers are more likely to give birth to higher-weight babies. Since nicotine is known to be an appetite suppressant, there may be an association between maternal smoking, maternal smoking, and birthweight.  
 
 # 5 Appendix
 
