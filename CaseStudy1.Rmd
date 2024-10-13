@@ -301,6 +301,7 @@ kable(numerical_summaries, caption = "Numerical Differences in Distributions of 
 The following boxplot shows the distribution of gestation lengths for smokers and non-smokers:
 
 ```{r, echo=FALSE, fig.width=4, fig.height=6, fig.align = 'center'}
+par(font.main = 1)
 boxplot(gestation ~ smoke, data = cleaned_df, 
         main = "Gestation Length", 
         xlab = "Smoking (0 = No, 1 = Yes)", 
