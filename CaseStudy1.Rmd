@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 babies <- read.table("babies.txt", header = TRUE, sep="")
 ```
 
+## Contribution
+
+Student 1 ... Student 2 ...
+
 # 1 Introduction
 
 This report investigates the potential differences in birth weight between babies born to mothers who smoked during pregnancy and those who did not. Epidemiological research has consistently linked smoking during pregnancy to low birth weights and preterm birth. Birth weight is an indicator of a newborn's health, with lower birth weights associated with an increased risk of infant mortality. This study seeks to quantify the effects of maternal smoking on infant health through statistical analysis using data from the Child Health and Development Studies (CHDS) dataset. 
