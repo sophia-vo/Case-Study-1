@@ -27,90 +27,69 @@ The report is structured as follows: Section 1 addresses each of the research qu
 
 ### 2.1.1. Methods
 
->>The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To do this, we looked at the distributions of each variable graphically using a histogram.
-
+The first step of our analysis was to examine the dataset and understand the characteristics and distributions of each variable. We reviewed all variables and determined their type (numerical or categorical) and identified any outliers or irregularities. To help us understand the structure of the data, we looked at the distributions of each variable graphically using a histogram.
 
 ### 2.1.2. Analysis
 
 ```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 hist(babies$bwt, 
      main = "Birth Weight", 
-     xlab = "birth weight (oz)")
+     xlab = "birth weight (oz)",
+     font.main = 1)
 hist(babies$gestation, 
      main = "Gestation", 
-     xlab = "length of gestation (days)")
+     xlab = "length of gestation (days)",
+     font.main = 1)
 hist(babies$parity, 
      breaks = 2, 
      main = "First Pregnancy Indicator", 
-     xlab = "parity")
+     xlab = "parity",
+     font.main = 1)
 hist(babies$age, 
      main = "Mother's Age", 
-     xlab = "age (yrs)")
+     xlab = "age (yrs)",
+     font.main = 1)
 hist(babies$height, 
      main = "Mother's Height", 
-     xlab = "height (in)")
+     xlab = "height (in)",
+     font.main = 1)
 hist(babies$weight, 
      main = "Mother's Weight", 
-     xlab = "weight (lbs)")
+     xlab = "weight (lbs)",
+     font.main = 1)
 hist(babies$smoke,
      breaks= 2,
      main = "Whether the Mother Smokes", 
-     xlab = "parity")
-```
+     xlab = "parity",
+     font.main = 1)
 
->>While looking at the histograms, we noticed that some of the data in the dataset were outside of a reasonable range for those variables. Some women had listed gestation periods of up to 1000 days while others were described as over 8 feet or up to 1000 pounds. So, while cleaning the dataset, we removed these outliers to complete the analysis without them.
-
->>After cleaning the data, we plotted the same histograms again with the cleaned dataset.
-
-```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 cleaned_df <- subset(subset(babies, parity <= 1), smoke <= 1)
 cleaned_df <- subset(cleaned_df, weight <= 500)
 cleaned_df <- subset(cleaned_df, gestation <= 375)
 cleaned_df <- subset(cleaned_df, height <= 85)
 cleaned_df <- subset(cleaned_df, age <= 60)
-
-hist(cleaned_df$bwt, 
-     main = "Birth Weight v2.", 
-     xlab = "birth weight (oz)")
-hist(cleaned_df$gestation, 
-     main = "Gestation v2.", 
-     xlab = "length of gestation (days)")
-hist(cleaned_df$parity, 
-     breaks = 2, 
-     main = "First Pregnancy Indicator v2.", 
-     xlab = "parity")
-hist(cleaned_df$age, 
-     main = "Mother's Age v2.", 
-     xlab = "mother's age (yrs)")
-hist(cleaned_df$height, 
-     main = "Mother's Height v2.", 
-     xlab = "mother's height (in)")
-hist(cleaned_df$weight, 
-     main = "Mother's Weight v2.", 
-     xlab = "mother's weight (lbs)")
-hist(cleaned_df$smoke, 
-     breaks = 2, 
-     main = "Whether the Mother Smokes v2.", 
-     xlab = "parity")
 ```
 
+Several outliers and inconsistencies were identified in the data, which may distort the results of our analyses. The dataset includes a binary indicator for whether the pregnancy was the first for the mother. Since parity can either take on 0 (first pregnancy) or 1 (subsequent pregnancy), we removed any entries that were not 0 or 1. The current maximum height of a woman, based on the Guinness World Record, is 7 feet 0.7 inch (84.7 inches); we set the upper limit for height at 85 inches to account for potential data entry errors or unreasonable outliers. The longest pregnancy recorded lasted 375 days; gestation values exceeding this were excluded from the dataset as unrealistic outliers. We set an upper weight limit of 500 pounds, which is extremely high but not impossible. Women weighing over 500 lbs are not too rare, but are typically associated with severe health conditions, which would significantly skew the dataset. Excluding such outliers helps avoids distorting results. Similarly, we set the maximum reasonable age for a mother's age to be 60 years. Pregnancies above this age are exceptionally rare and could result from data recording errors.
 
+After cleaning the data, we plotted the distributions of each variable to confirm that the cleaning process successfully addressed the outliers and inconsistencies. These graphs, presented in the Appendix, reflect the revised dataset and provide a more accurate representation of the variables.
+
+Refer to the Appendix for the revised histograms of birth weight, gestation, parity, mother's age, height, and weight.
 
 ### 2.1.3. Conclusion
 
->>We concluded that the dataset does not qualify as a simple random sample because of the method in which it was collected. In order to qualify as a simple random sample, every pregnant women would need to have had an equal chance of being selected. However, in this dataset the pregnant women selected were limited to a certain time frame (1960-1967) and were limited to a specific health plan in a single region. Therefore, this dataset does not qualify as a simple random sample. This means that the dataset is not representative of the entire population and the results of the analysis cannot be generalized.
-
+We concluded that the dataset does not qualify as a simple random sample because of the method in which it was collected. In order to qualify as a simple random sample, every pregnant women would need to have had an equal chance of being selected. However, in this dataset the pregnant women selected were limited to a certain time frame (1960-1967) and were limited to a specific health plan in a single region. Therefore, this dataset does not qualify as a simple random sample. This means that the dataset is not representative of the entire population and the results of the analysis cannot be generalized.
 
 ## 2.2. Numerical Analysis of Birth Weight Distributions
 
 ### 2.2.1. Methods
 
->>Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values.  
+Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values.  
 
 
 ### 2.2.2. Analysis
 
->>We found that the numerical summaries were as follows:
+We found that the numerical summaries were as follows:
 
 ```{r, echo=FALSE}
 library(knitr)
@@ -126,23 +105,23 @@ kable(numerical_summaries, caption = "Numerical Differences in Distributions of 
   kable_styling(latex_options = c("striped", "hold_position"), full_width = FALSE)
 ```
 
->>Most of these numerical summaries show that the birth weights of babies of mothers who are non-smokers are larger than the birth weights of babies of mothers who are smokers. To determine whether or not those differences are significant would require further analysis.
+Most of these numerical summaries show that the birth weights of babies of mothers who are non-smokers are larger than the birth weights of babies of mothers who are smokers. To determine whether or not those differences are significant would require further analysis.
 
 
 ### 2.2.3. Conclusion
 
->>We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
+We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 
 ## 2.3. Graphical Analysis of Birth Weight Distributions
 
 ### 2.3.1. Methods
 
->>Now that we've summarized the two distributions numerically, we also want to look at them graphically. 
+Now that we've summarized the two distributions numerically, we also want to look at them graphically. 
 
 ### 2.3.2. Analysis
 
->>We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison.
+We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison.
 
 ```{r, echo=FALSE, include=FALSE}
 smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
@@ -158,13 +137,15 @@ plot( p1,
       xlim = c(50,190),
       freq = FALSE,
       ylim = c(0,0.026),
-      xlab = "birth weight (oz)")
+      xlab = "birth weight (oz)",
+     font.main = 1)
 
 plot( p2, 
       col=rgb(1,0,0,1/4),  
       xlim = c(50,190),
       freq = FALSE,
-      add = TRUE)
+      add = TRUE,
+           font.main = 1)
 
 legend(150, 0.025, 
        c("smokers", "nonsmokers"), 
@@ -175,23 +156,23 @@ legend(150, 0.025,
 
 ### 2.3.3. Conclusion
 
->>Based on the layering of the two distributions, the distribution of the baby weights of the mothers who are smokers is shifted to the left of the the distribution of the baby weights of the mothers who are non-smokers. This shows that overall, the baby weights of mothers who are smokers is less than the baby weights of mothers who are non-smokers. To determine whether or not this amount is significant, further analysis would need to be done.
+Based on the layering of the two distributions, the distribution of the baby weights of the mothers who are smokers is shifted to the left of the the distribution of the baby weights of the mothers who are non-smokers. This shows that overall, the baby weights of mothers who are smokers is less than the baby weights of mothers who are non-smokers. To determine whether or not this amount is significant, further analysis would need to be done.
 
 ## 2.4. Incidence Analysis of Low Birth Weights
 
 ### 2.4.1. Methods
 
->>Now that we've done both numerical and graphical analysis, we want to use one final comparison approach: incidence comparison. Using 100 ounces as the threshold of a low-weight baby, we found the percentages of babies that weigh under that threshold for both smoking and non-smoking mothers. We then adjusted the threshold to observe any changes in the incidences of low-weight births.
+Now that we've done both numerical and graphical analysis, we want to use one final comparison approach: incidence comparison. Using 100 ounces as the threshold of a low-weight baby, we found the percentages of babies that weigh under that threshold for both smoking and non-smoking mothers. We then adjusted the threshold to observe any changes in the incidences of low-weight births.
 
 ### 2.4.2. Analysis
 
->>We found that the percentages of low-weight babies are as follows:
+We found that the percentages of low-weight babies are as follows:
 
->>Percentage of low-weight babies in smoking mothers: 64.70588%
+Percentage of low-weight babies in smoking mothers: 64.70588%
 
->>Percentage of low-weight babies in non-smoking mothers: 35.29412%
+Percentage of low-weight babies in non-smoking mothers: 35.29412%
 
->>Then, we wanted to visualize the changes in the incidences of low birth weights as the threshold changes. So, we used every integer between the minimum and maximum birth weights as a threshold and recorded how the percentages of low-weight babies in smoking vs. non-smoking mothers changed. The results of this are shown below.
+Then, we wanted to visualize the changes in the incidences of low birth weights as the threshold changes. So, we used every integer between the minimum and maximum birth weights as a threshold and recorded how the percentages of low-weight babies in smoking vs. non-smoking mothers changed. The results of this are shown below.
 
 ```{r, echo=FALSE, fig.width=7, fig.height=4}
 low_weight_babies_df <- cleaned_df[cleaned_df$bwt < 100,]
@@ -228,7 +209,8 @@ plot(results_df$threshold, results_df$low_bwt_nonsmoker, type = "l",
      ylab = "Proportion of Low Birth Weight Babies", 
      main = "Low Birth Weight Babies by Smoking Status",
      xlim = c(55,176),
-     ylim = c(0,1))
+     ylim = c(0,1),
+     font.main = 1)
 
 lines(results_df$threshold, results_df$low_bwt_smoker, col = "blue", lwd = 2)
 
@@ -239,7 +221,7 @@ legend("topright", legend = c("Smoker", "Non-smoker"),
 
 ### 2.4.3. Conclusion
 
->>As shown in the graph above, the incidences of low-weight babies in smoking mothers is greater than the incidences of low-weight babies in non-smoking mothers when the threshold for low-weight babies is between 70 and 120. Outside of that range, the results are flipped.
+As shown in the graph above, the incidences of low-weight babies in smoking mothers is greater than the incidences of low-weight babies in non-smoking mothers when the threshold for low-weight babies is between 70 and 120. Outside of that range, the results are flipped.
 
 ## 2.5 Comparative Analysis of Various Analysis Types
 
@@ -250,3 +232,40 @@ legend("topright", legend = c("Smoker", "Non-smoker"),
 ### Incidence Analysis
 
 # 3. Discussion
+
+# 4. Appendix
+
+### Distrobution of the Cleaned Data
+```{r, echo=FALSE, fig.width=3, fig.height=2.5}
+hist(cleaned_df$bwt, 
+     main = "Birth Weight", 
+     xlab = "birth weight (oz)",
+     font.main = 1)
+hist(cleaned_df$gestation, 
+     main = "Gestation", 
+     xlab = "length of gestation (days)",
+     font.main = 1)
+hist(cleaned_df$parity, 
+     breaks = 2, 
+     main = "First Pregnancy Indicator", 
+     xlab = "parity",
+     font.main = 1)
+hist(cleaned_df$age, 
+     main = "Mother's Age", 
+     xlab = "mother's age (yrs)",
+     font.main = 1)
+hist(cleaned_df$height, 
+     main = "Mother's Height", 
+     xlab = "mother's height (in)",
+     font.main = 1)
+hist(cleaned_df$weight, 
+     main = "Mother's Weight", 
+     xlab = "mother's weight (lbs)",
+     font.main = 1)
+hist(cleaned_df$smoke, 
+     breaks = 2, 
+     main = "Whether the Mother Smokes", 
+     xlab = "parity",
+     font.main = 1)
+
+```
