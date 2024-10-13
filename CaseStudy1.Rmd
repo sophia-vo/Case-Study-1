@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 babies <- read.table("babies.txt", header = TRUE, sep="")
 ```
 
-# 1. Introduction
+# 1 Introduction
 
 This report investigates the potential differences in birth weight between babies born to mothers who smoked during pregnancy and those who did not. Epidemiological research has consistently linked smoking during pregnancy to low birth weights and preterm birth. Birth weight is an indicator of a newborn's health, with lower birth weights associated with an increased risk of infant mortality. This study seeks to quantify the effects of maternal smoking on infant health through statistical analysis using data from the Child Health and Development Studies (CHDS) dataset. 
 
@@ -21,7 +21,7 @@ The primary objective is to answer the question: Is there a statistically signif
 The report is structured as follows: Section 1 addresses each of the research questions outlined above, focusing on the numerical, graphical, and incidence comparisons between the smoking and non-smoking groups; Section 2 covers the statistical analysis processes and results; Section 3 expands the analysis by examining other variables that may impact birth weight; and Section 4 discusses the conclusions and implications of the results. Overall, this report will determine whether the difference in weight between babies born to mothers who smoked during pregnancy and those who did not is significant for the health of the baby.
 
 
-# 2. Analysis
+# 2 Analysis
 
 ## 2.1. Data Processing
 
@@ -84,8 +84,7 @@ We concluded that the dataset does not qualify as a simple random sample because
 
 ### 2.2.1. Methods
 
-Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values.  
-
+Now that we had examined the dataset and each variable as a whole, we looked at the two distributions of birth weights for babies born to women who smoked during their pregnancy and for babies born to women who did not smoke during their pregnancy. Summarizing these distributions numerically, we calculated the minimum, maximum, mean, median, standard deviation, and quartile values. This will allow us to understand the basic characteristics of the data before we perform any visualizations.  
 
 ### 2.2.2. Analysis
 
@@ -110,18 +109,18 @@ Most of these numerical summaries show that the birth weights of babies of mothe
 
 ### 2.2.3. Conclusion
 
-We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
+We found that the mean and median birth weights of the smokers were 114.1095 and 115 respectively while the mean and median birth weights of the non-smokers were 123.0472 and 123 respectively. The lower mean and median birth weights for smokers suggest that smoking may contribute lower birth weights. Since the means and medians of the two distributions were very similar, we can infer that the shapes of the two distributions are almost symmetrical.
 
 
 ## 2.3. Graphical Analysis of Birth Weight Distributions
 
 ### 2.3.1. Methods
 
-Now that we've summarized the two distributions numerically, we also want to look at them graphically. 
+Now that we've summarized the two distributions numerically, we will visualize the distribution of birth weights for both smokers and non-smokers to explore the data more comprehensively.
 
 ### 2.3.2. Analysis
 
-We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. We then layered the two histograms for direct comparison.
+We plotted two graphs, one with the birth weight distribution of women who are non-smokers and another with the birth weight distribution of women who are smokers. Overlaying the two distributions allows us to observe any visual differences between the groups.
 
 ```{r, echo=FALSE, include=FALSE}
 smoker_df <- cleaned_df[cleaned_df$smoke == 1,]
@@ -223,6 +222,7 @@ legend("topright", legend = c("Smoker", "Non-smoker"),
 
 As shown in the graph above, the incidences of low-weight babies in smoking mothers is greater than the incidences of low-weight babies in non-smoking mothers when the threshold for low-weight babies is between 70 and 120. Outside of that range, the results are flipped.
 
+
 ## 2.5 Comparative Analysis of Various Analysis Types
 
 ### Numerical Analysis
@@ -231,11 +231,16 @@ As shown in the graph above, the incidences of low-weight babies in smoking moth
 
 ### Incidence Analysis
 
-# 3. Discussion
+### Conclusion
+The results of the analysis strongly suggest that smoking has a significant effect on birth weight and increases the risk of preterm births. The summary statistics reveal that mothers who smoke have babies with lower birth weights on average, and the proportion of low birth weights among smokers (64.71%) is substantially higher than that among non-smokers (35.29%).
 
-# 4. Appendix
+# 3 Advanced Analysis
 
-### Distrobution of the Cleaned Data
+# 4 Discussion
+
+# 5 Appendix
+
+### Distribution of the Cleaned Data
 ```{r, echo=FALSE, fig.width=3, fig.height=2.5}
 hist(cleaned_df$bwt, 
      main = "Birth Weight", 
