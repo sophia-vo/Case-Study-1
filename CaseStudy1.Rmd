@@ -316,7 +316,7 @@ Other limitations of this dataset may also affect the applicability of our resul
 - The dataset only provides data about women in 1960 to 1967, meaning the results from this analysis may no longer be relevant to women in the present time. 
 - The absence of data on female babies and multiple-birth babies also limits the applicability of our findings.
 - Recording only one occurrence of the mother's weight, even though how it changes throughout the course of the pregnancy may also be an important factor to consider in the analysis.
-- Some of the data may have been self reported (considering some of the unreasonable values in the dataset that were Section 2.1 Data Processing) which can lead to some biases.
+- Some of the data may have been self reported (considering some of the unreasonable values in the dataset that were mentioned in Section 2.1 Data Processing) which can lead to some biases.
 - The aforementioned limitations with specific locations and health plans.
 
 We acknowledge the presence of these limitations and understand their affects on the generalizability of our results.
